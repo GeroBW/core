@@ -2,8 +2,8 @@
   "bridge": {
     "basic": {
       "datastoreversion": "113",
-      "swversion": "1959097030",
-      "apiversion": "1.48.0",
+      "swversion": "1961076030",
+      "apiversion": "1.56.0",
       "modelid": "BSB002",
       "factorynew": false,
       "replacesbridgeid": null,

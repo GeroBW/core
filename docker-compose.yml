@@ -4,12 +4,13 @@ services:
     network_mode: host
     restart: unless-stopped
     environment:
-      - HASS_TOKEN=xxxxxx
-      - HASS_URL=http://192.168.1.1:8123
-#      - VERBOSE=true
+      - HASS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyZGE2NGUyMjg3YjY0NDgzODEyNjE0MzMwZDQ4ODk2MCIsImlhdCI6MTcwMDQ4ODI2MCwiZXhwIjoyMDE1ODQ4MjYwfQ.BLqmDdphNHd4zGYJGAFDOTCShyTq44r3oFm0bcvWDi4
+      - HASS_URL=http://192.168.220.49:8123
+      - VERBOSE=true
     image: ghcr.io/hass-emulated-hue/core:0.2.9 # <<< Desired release version here
     volumes:
-      - ./your-directory-here:/config/.emulated-hue
+      - ./your-directory-here:/config/.emulated-hue\
+
 # If host networking mode is undesired,
 # Hue requires these ports and there is no way to change them as most
 # applications do not support accessing the Hue api over different ports
@@ -18,7 +19,7 @@ services:
 # port 443: https
 # port 1900: ssdp -> Does not work with bridged networking as multicast is not forwarded
 # port 2100: entertainment
-#    ports:
-#      - '80:80'
-#      - '443:443'
-#      - '2100:2100/udp'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '2100:2100/udp'

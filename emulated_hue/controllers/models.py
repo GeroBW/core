@@ -34,9 +34,9 @@ class EntityState(BaseModel):
     transition_seconds: float | None = None
     brightness: int | None = None
     color_temp: int | None = None
-    hue_saturation: tuple[int, int] | None = None
+    hue_saturation: tuple[float, float] | None = None
     xy_color: tuple[float, float] | None = None
-    rgb_color: tuple[int, int, int] | None = None
+    rgb_color: tuple[float, float, float] | None = None
     flash_state: str | None = None
     effect: str | None = None
     color_mode: str | None = None
@@ -95,10 +95,12 @@ class EntityState(BaseModel):
             return EntityState()
 
         save_state = {}
-        for state in list(vars(cls).get("__fields__")):
+        for state in list(cls.__annotations__.keys()):
             if state in save_state:
                 save_state[state] = states[state]
         return EntityState(**save_state)
 
 
-ALL_STATES: list = list(vars(EntityState).get("__fields__"))
+ALL_STATES: list = list(
+    EntityState.__annotations__.keys()
+)  # list(vars(EntityState).get("__fields__"))
